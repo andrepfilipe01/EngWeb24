@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 from lxml import etree
 
 xml_folder = 'MapaRuas-materialBase/texto'
-xslt_file = 'transformacao.xsl'
+xslt_file = 'xmlToHTML.xsl'
 
 def xmlToHtml_links(xml_file):
 
@@ -32,15 +32,16 @@ def xmlToHtml_links(xml_file):
 def process_xml_file(xml_file):
     xml_file_path = os.path.join(xml_folder, xml_file)
 
-    # Check if the file follows the desired pattern
+    # verificar se consta nos parametros de inicio MRB e fim .xml
     if xml_file.startswith("MRB-") and xml_file.endswith(".xml"):
-        # Insert XML declaration and XSLT instruction if not already present
+
+        # inserir as declaraçoes
         with open(xml_file_path, 'r+', encoding='utf-8') as f:
             lines = f.readlines()
             if not lines[0].startswith('<?xml'):
                 lines.insert(0, '<?xml version="1.0" encoding="UTF-8"?>\n')
             if not lines[1].startswith('<?xml-stylesheet'):
-                lines.insert(1, '<?xml-stylesheet type="text/xsl" href="./transformacao.xsl"?>\n')
+                lines.insert(1, '<?xml-stylesheet type="text/xsl" href="./xmlToHTML.xsl"?>\n')
 
             f.seek(0)
             f.writelines(lines)
