@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="./transformacao.xsl"?>
 <rua xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="file:/Users/Francisca/Desktop/4Ano/Publica%C3%A7%C3%A3o_Eletr%C3%B3nica/Projeto%20Final/MRB-rua.xsd">
     <meta>
