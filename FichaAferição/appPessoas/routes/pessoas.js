@@ -1,36 +1,42 @@
 var express = require('express');
-var router = express.Router();
-var pessoas = require('../controllers/pessoa')
+var router = express.Router()
+var Pessoa = require("../controllers/pessoa");
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
-  pessoas.list()
-  .then(dados => res.jsonp(dados))
-  .catch(erro => res.status(500).jsonp(erro))
-});
+  Pessoa.list()
+  .then(data => res.jsonp(data))
+  .catch(erro => res.jsonp(erro))
+}
+);
+
 
 router.get('/:id', function(req, res, next) {
-  pessoas.findById(req.params.id)
-  .then(dados => res.jsonp(dados))
-  .catch(erro => res.status(500).jsonp(erro))
+  Pessoa.findById(req.params.id)
+    .then(data => res.jsonp(data))
+    .catch(erro => res.jsonp(erro))
 });
+
 
 router.post('/', function(req, res, next) {
-  pessoas.insert(req.body)
-  .then(dados => res.jsonp(dados))
-  .catch(erro => res.status(500).jsonp(erro))
+  Pessoa.insert(req.body)
+    .then(data => res.jsonp(data))
+    .catch(erro => res.jsonp(erro))
 });
 
-router.post('/:id', function(req, res, next) {
-  pessoas.update(req.params.id, req.body)
-  .then(dados => res.jsonp(dados))
-  .catch(erro => res.status(500).jsonp(erro))
+
+router.put('/:id', function(req, res, next) {
+  Pessoa.update(req.params.id, req.body)
+    .then(data => res.jsonp(data))
+    .catch(erro => res.jsonp(erro))
 });
+
 
 router.delete('/:id', function(req, res, next) {
-  pessoas.remove(req.params.id)
-  .then(dados => res.jsonp(dados))
-  .catch(erro => res.status(500).jsonp(erro))
+  return Pessoa.remove(req.params.id)
+    .then(data => res.jsonp(data))
+    .catch(erro => res.jsonp(erro))
 });
+
+
 
 module.exports = router;
